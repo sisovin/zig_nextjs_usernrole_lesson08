@@ -1,2 +1,1 @@
-# nestjs_nextjs_usernrole_lesson08-1
-A repository demonstrating how to integrate Zig with Next.js
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
