@@ -25,6 +25,24 @@ Zig can be used to build **Node.js native modules** (`.node` files) using **N-AP
 - Next.js API routes can call Zig-compiled binaries for performance-heavy tasks.
 - Deploy Zig-based microservices that integrate with Next.js via APIs.
 
+## Running the Zig-based HTTP Server
+To run the Zig-based HTTP server, follow these steps:
+1. Build the Zig server:
+   ```sh
+   zig build-exe api/zig-server.zig
+   ```
+2. Run the server:
+   ```sh
+   ./zig-server
+   ```
+3. The server will be listening on `http://localhost:3001`.
+
+## Example API Route
+The example API route `/api/zig-endpoint` can be accessed at:
+```sh
+http://localhost:3001/api/zig-endpoint
+```
+
 ## Conclusion
 - **Fully building Next.js in Zig?** Not feasible.
 - **Using Zig within Next.js?** Definitely possible for WASM, backend APIs, and native modules.

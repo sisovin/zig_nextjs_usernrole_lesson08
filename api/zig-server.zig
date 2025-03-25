@@ -35,8 +35,19 @@ fn sendFile(conn: std.net.Server.Connection, path: []const u8) !void {
     try conn.stream.writeAll(contents);
 }
 
+fn sendJsonResponse(conn: std.net.Server.Connection, json: []const u8) !void {
+    const allocator = std.heap.page_allocator;
+
+    // Write HTTP response
+    const response_header = try std.fmt.allocPrint(allocator, "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: {d}\r\nConnection: close\r\n\r\n", .{ json.len });
+    defer allocator.free(response_header);
+
+    try conn.stream.writeAll(response_header);
+    try conn.stream.writeAll(json);
+}
+
 pub fn main() !void {
-    // Create address to listen on localhost:3000
+    // Create address to listen on localhost:3001
     const address = try std.net.Address.parseIp("127.0.0.1", 3001);
 
     // Initialize server
@@ -63,26 +74,33 @@ pub fn main() !void {
         _ = tokens.first(); // HTTP method
         const path = tokens.next() orelse "/";
 
-        // Serve index.html for root path
-        const file_path = if (std.mem.eql(u8, path, "/"))
-            "index.html"
-        else
-            path[1..];
-
-        sendFile(conn, file_path) catch |err| {
-            if (err == error.FileNotFound) {
-                const not_found =
-                    \\HTTP/1.1 404 Not Found
-                    \\Content-Type: text/html
-                    \\Connection: close
-                    \\
-                    \\<!DOCTYPE html>
-                    \\<html><body><h1>404 Not Found</h1></body></html>
-                ;
-                try conn.stream.writeAll(not_found);
-            } else {
+        if (std.mem.eql(u8, path, "/api/zig-endpoint")) {
+            const json_response = "{\"message\": \"Hello from Zig!\"}";
+            sendJsonResponse(conn, json_response) catch |err| {
                 return err;
-            }
-        };
+            };
+        } else {
+            // Serve index.html for root path
+            const file_path = if (std.mem.eql(u8, path, "/"))
+                "index.html"
+            else
+                path[1..];
+
+            sendFile(conn, file_path) catch |err| {
+                if (err == error.FileNotFound) {
+                    const not_found =
+                        \\HTTP/1.1 404 Not Found
+                        \\Content-Type: text/html
+                        \\Connection: close
+                        \\
+                        \\<!DOCTYPE html>
+                        \\<html><body><h1>404 Not Found</h1></body></html>
+                    ;
+                    try conn.stream.writeAll(not_found);
+                } else {
+                    return err;
+                }
+            };
+        }
     }
 }
