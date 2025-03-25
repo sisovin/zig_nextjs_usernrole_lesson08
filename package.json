@@ -1,0 +1,31 @@
+{
+  "name": "zig_nextjs_usernrole_lesson08",
+  "version": "1.0.0",
+  "description": "You can write a backend API in Zig (as a Web server) and connect it to your Next.js frontend via API routes.",
+  "main": "next.config.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "next start",
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sisovin/zig_nextjs_usernrole_lesson08.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sisovin/zig_nextjs_usernrole_lesson08/issues"
+  },
+  "homepage": "https://github.com/sisovin/zig_nextjs_usernrole_lesson08#readme",
+  "dependencies": {
+    "next": "^15.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "postcss": "^8"
+  }
+}
