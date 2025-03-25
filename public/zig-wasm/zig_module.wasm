@@ -6,3 +6,12 @@
     i32.add)
   (memory $memory (export "memory") 1)
   (data (i32.const 0) "Hello, Zig WASM!"))
+
+(module
+  (type $t1 (func (param i32) (result i32)))
+  (func $multiply_by_two (export "multiply_by_two") (type $t1) (param $p1 i32) (result i32)
+    get_local $p1
+    i32.const 2
+    i32.mul)
+  (memory $memory (export "memory") 1)
+  (data (i32.const 0) "Hello, Zig WASM!"))
