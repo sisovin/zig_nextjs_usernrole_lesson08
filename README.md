@@ -21,6 +21,10 @@ Zig can be used to build **Node.js native modules** (`.node` files) using **N-AP
 - Write performance-critical parts of Next.js backend in Zig.
 - Use Zig as an alternative to C/C++ in Node.js native addons.
 
+## 5. Using Zig for Serverless Functions in Next.js
+- Next.js API routes can call Zig-compiled binaries for performance-heavy tasks.
+- Deploy Zig-based microservices that integrate with Next.js via APIs.
+
 ## Conclusion
 - **Fully building Next.js in Zig?** Not feasible.
 - **Using Zig within Next.js?** Definitely possible for WASM, backend APIs, and native modules.
