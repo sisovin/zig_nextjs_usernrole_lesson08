@@ -43,6 +43,33 @@ The example API route `/api/zig-endpoint` can be accessed at:
 http://localhost:3001/api/zig-endpoint
 ```
 
+## Financial Management System Endpoints
+
+### User Authentication
+- **POST /api/auth**: User login & signup with JWT-based authentication.
+- **DELETE /api/auth**: Soft-delete user account.
+
+### Transactions
+- **GET /api/transactions**: Get all transactions for a user.
+- **POST /api/transactions**: Create a new transaction.
+- **PUT /api/transactions**: Update an existing transaction.
+- **DELETE /api/transactions**: Delete a transaction.
+
+### Saving Goals
+- **GET /api/savingGoals**: Get all saving goals for a user.
+- **POST /api/savingGoals**: Create a new saving goal.
+- **PUT /api/savingGoals**: Update an existing saving goal.
+- **DELETE /api/savingGoals**: Delete a saving goal.
+
+### Financial Reports
+- **GET /api/reports**: Generate financial reports for a user.
+
+### Admin Controls
+- **GET /api/admin**: Get all users and transactions.
+- **POST /api/admin**: Create a new user.
+- **PUT /api/admin**: Update an existing user.
+- **DELETE /api/admin**: Delete a user.
+
 ## Conclusion
 - **Fully building Next.js in Zig?** Not feasible.
 - **Using Zig within Next.js?** Definitely possible for WASM, backend APIs, and native modules.
